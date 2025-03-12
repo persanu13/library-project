@@ -1,10 +1,14 @@
+import { auth } from "@/auth/auth";
 import GithubAuth from "@/ui/auth/github-auth";
 import LoginForm from "@/ui/auth/login-form";
 import { Button } from "@/ui/components/button";
 import LibroLogo from "@/ui/logoes/libro";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default async function LoginPage() {
+  const session = await auth();
+  if (session) redirect("/");
   return (
     <div className="flex items-center justify-center bg-background w-screen h-screen">
       <main className="flex flex-col  rounded-xl border-2 border-black bg-white pt-10 pb-8 pr-10 pl-10 w-[476px]  gap-4">

@@ -1,11 +1,12 @@
 "use client";
 
 import { logout } from "@/auth/authenticate";
+import { Button } from "../components/button";
 
 export function LogOutButton() {
   return (
     <form action={logout}>
-      <button type="submit">LogOut</button>
+      <Button type="submit">LogOut</Button>
     </form>
   );
 }
