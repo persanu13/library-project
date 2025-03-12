@@ -1,6 +1,6 @@
 "use server";
 
-//import db from "@/lib/db/db";
+import prismaDb from "@/db/prismaDb";
 import { State } from "@/lib/types";
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
@@ -49,25 +49,25 @@ export async function registerUser(prevState: State, formData: FormData) {
   const { name, email, password } = validatedFields.data;
 
   try {
-    // const existingUser = await db.user.findUnique({
-    //   where: { email: email.toLowerCase() },
-    // });
-    // if (existingUser) {
-    //   return {
-    //     message: "Registration failed",
-    //     errors: {
-    //       email: ["User with this email already exists"],
-    //     },
-    //   };
-    // }
-    // const hashedPassword = await hash(password, 10);
-    // await db.user.create({
-    //   data: {
-    //     name: name,
-    //     email: email.toLowerCase(),
-    //     password: hashedPassword,
-    //   },
-    // });
+    const existingUser = await prismaDb.user.findUnique({
+      where: { email: email.toLowerCase() },
+    });
+    if (existingUser) {
+      return {
+        message: "Registration failed",
+        errors: {
+          email: ["User with this email already exists"],
+        },
+      };
+    }
+    const hashedPassword = await hash(password, 10);
+    await prismaDb.user.create({
+      data: {
+        name: name,
+        email: email.toLowerCase(),
+        password: hashedPassword,
+      },
+    });
   } catch (error) {
     return {
       message: "Database Error: Failed to register user.",
