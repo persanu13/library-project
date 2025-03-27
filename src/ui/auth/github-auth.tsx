@@ -1,13 +1,16 @@
-import { Github } from "@/ui/logoes/github";
 import { Button } from "../components/button";
 import { githubAuth } from "@/auth/authenticate";
+import Image from "next/image";
 
 export default function GithubAuth() {
   return (
     <form action={githubAuth}>
-      <Button className="w-full flex justify-center items-center text-foreground bg-white hover:!bg-gray-100  border-1 border-gray-400   gap-3 focus-visible:!outline-gray-200 active:!bg-gray-200  [&_svg]:pointer-events-none [&_svg]:size-6 [&_svg]:shrink-0">
-        <Github />
-        Continue with GitHub
+      <Button
+        variant="secondary"
+        className="mt-6  [&_svg]:pointer-events-none [&_svg]:size-6 [&_svg]:shrink-0"
+      >
+        <Image src="/github.svg" alt="github logo" width={20} height={20} />
+        <span className="m-0 p-0 flex leading-tight">Continue with GitHub</span>
       </Button>
     </form>
   );

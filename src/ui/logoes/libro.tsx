@@ -12,9 +12,9 @@ export default function LibroLogo({ size = "medium" }: LibroLogoProps) {
       gap: "gap-2",
     },
     medium: {
-      text: "text-[30px]",
-      image: { width: 36, height: 100 },
-      gap: "gap-3",
+      text: "text-2xl",
+      image: { width: 24, height: 29 },
+      gap: "gap-1",
     },
     big: {
       text: "text-[48px]",
@@ -27,7 +27,7 @@ export default function LibroLogo({ size = "medium" }: LibroLogoProps) {
     <div
       className={`${sizeClasses[size].gap} flex flex-row items-center font-fredoka font-bold leading-none`}
     >
-      <h1 className={`${sizeClasses[size].text} text-foreground`}>
+      <h1 className={`${sizeClasses[size].text} text-foreground m-0`}>
         Libro<span className="text-primary">Rent</span>
       </h1>
       <Image
